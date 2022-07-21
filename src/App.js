@@ -1,9 +1,11 @@
+import ListProducts from './components/ListProducts';
+import Provider from './context/Provider';
 
 function App() {
   return (
-    <div className="App">
-      <p>Olá Mundo</p>
-    </div>
+    <Provider>
+      <ListProducts />
+    </Provider>
   );
 }
 
