@@ -6,12 +6,20 @@ import db from '../db/data.json';
 function Provider ({ children }) {
   const [data, setData] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
+  const [filterCategory, setFilterCategory] = useState([]);
   const [filter, setFilter] = useState('');
   const [categoriesFilter, setCategoriesFilter] = useState('');
 
   useEffect(() => {
-    setData(db);
+    const dataBase = db.data.nodes;
+    setData(dataBase);
   }, []);
+
+  useEffect(() => {
+    const categories = data.map(item => item.category.name);
+    const filters = categories.filter((item, i) => categories.indexOf(item) === i);
+    setFilterCategory(filters);
+  }, [data])
 
   const handleChange = ({ target }) => {
     setCategoriesFilter(target.value.toLowerCase());
@@ -22,6 +30,7 @@ function Provider ({ children }) {
     dataFilter,
     filter,
     categoriesFilter,
+    filterCategory,
     setDataFilter,
     setFilter,
     setCategoriesFilter,

@@ -1,15 +1,10 @@
-import { useEffect, useState } from 'react';
-import db from '../db/data.json';
+import FilterHeader from './FilterHeader';
 
 export default function ListProducts() {
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    setData(db);
-  }, []);
-
-  console.log(data);
   return (
-    <h1>Olá</h1>
+    <div>
+      <h1>Olá</h1>
+      <FilterHeader/>
+    </div>
   );
 }
