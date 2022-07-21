@@ -7,7 +7,7 @@ function FilterHeader() {
     filter,
     setFilter,
   } = useContext(ProductsContext);
-  
+
   return (
     <div>
       <form action="">
@@ -15,8 +15,8 @@ function FilterHeader() {
         <select
           name="category"
           id="category"
-          value={ filter }
-          onChange={ ({ target }) => setFilter(target.value)}
+          value={filter}
+          onChange={({ target }) => setFilter(target.value)}
         >
           <option value="all">All</option>
           {

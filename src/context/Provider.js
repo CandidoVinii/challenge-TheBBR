@@ -23,12 +23,12 @@ function Provider ({ children }) {
 
   useEffect(() => {
     if(filter !== 'all') {
-      const filterData = db.data.nodes.filter((item) => item.category.name === filter)
+      const filterData = data.filter((item) => item.category.name === filter)
       setDataFilter(filterData);
     } else {
-      setDataFilter(db.data.nodes);
+      setDataFilter([]);
     }
-  }, [filter])
+  }, [filter, data])
   console.log(dataFilter);
   
   const context = {
