@@ -18,7 +18,7 @@ function FilterHeader() {
           value={ filter }
           onChange={ ({ target }) => setFilter(target.value)}
         >
-          <option value="all">all</option>
+          <option value="all">All</option>
           {
             filterCategory !== undefined && (
               filterCategory.map((item, index) => (

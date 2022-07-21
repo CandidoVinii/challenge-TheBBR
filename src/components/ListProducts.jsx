@@ -37,17 +37,19 @@ export default function ListProducts() {
       {dataFilter.length > 0 ? (
         dataFilter.slice(0, page).map((item) => (
           <div key={ item.id }>
+            <h2>{ item.name }</h2>
             <img src={ item.images[0].src } alt={ item.images[0].alt } />
-            <h1>{ item.name }</h1>
             <p>{ item.shortDescription }</p>
+            <span>{ item.category.name }</span>
           </div>
         ))
       ) : (
         data.slice(0, page).map((item) => (
           <div key={ item.id }>
-          <img src={item.images[0].src} alt={item.images[0].alt} />
           <h1>{ item.name }</h1>
+          <img src={ item.images[0].src } alt={ item.images[0].alt } />
           <p>{ item.shortDescription }</p>
+          <span>{ item.category.name }</span>
         </div>
         ))
       )}
