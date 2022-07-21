@@ -19,7 +19,7 @@ function Provider ({ children }) {
     const categories = data.map(item => item.category.name);
     const filters = categories.filter((item, i) => categories.indexOf(item) === i);
     setFilterCategory(filters);
-  }, [data])
+  }, [data]);
 
   useEffect(() => {
     if(filter !== 'all') {
@@ -28,8 +28,20 @@ function Provider ({ children }) {
     } else {
       setDataFilter([]);
     }
-  }, [filter, data])
-  console.log(dataFilter);
+  }, [filter, data]);
+  
+  const handleChange = ({ target }) => {
+    setCategoriesFilter(target.value.toLowerCase());
+  };
+
+  useEffect(() => {
+    if(categoriesFilter.length === 0) {
+      setDataFilter([]);
+    } else {
+      const result = data.filter((item) => item.name.toLowerCase().includes(categoriesFilter));
+      setDataFilter(result);
+    }
+  }, [categoriesFilter, data]);
   
   const context = {
     data,
@@ -37,9 +49,10 @@ function Provider ({ children }) {
     filter,
     categoriesFilter,
     filterCategory,
+    handleChange,
     setDataFilter,
     setFilter,
-    setCategoriesFilter,
+    setCategoriesFilter
   };
 
   return (

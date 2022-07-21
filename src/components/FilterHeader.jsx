@@ -6,12 +6,13 @@ function FilterHeader() {
     filterCategory,
     filter,
     setFilter,
+    handleChange,
   } = useContext(ProductsContext);
 
   return (
     <div>
       <form action="">
-        <input type="text" />
+        <input onChange={handleChange} type="text" />
         <select
           name="category"
           id="category"
