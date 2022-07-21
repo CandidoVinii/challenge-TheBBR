@@ -21,10 +21,16 @@ function Provider ({ children }) {
     setFilterCategory(filters);
   }, [data])
 
-  const handleChange = ({ target }) => {
-    setCategoriesFilter(target.value.toLowerCase());
-  };
-
+  useEffect(() => {
+    if(filter !== 'all') {
+      const filterData = db.data.nodes.filter((item) => item.category.name === filter)
+      setDataFilter(filterData);
+    } else {
+      setDataFilter(db.data.nodes);
+    }
+  }, [filter])
+  console.log(dataFilter);
+  
   const context = {
     data,
     dataFilter,
@@ -34,7 +40,6 @@ function Provider ({ children }) {
     setDataFilter,
     setFilter,
     setCategoriesFilter,
-    handleChange,
   };
 
   return (
