@@ -6,21 +6,22 @@ function FilterHeader() {
     filterCategory,
     filter,
     setFilter,
+    handleChange,
   } = useContext(ProductsContext);
-  
 
   return (
     <div>
       <form action="">
-        <input type="text" />
+        <input onChange={handleChange} type="text" />
         <select
           name="category"
           id="category"
-          value={ filter }
-          onChange={ ({ target }) => setFilter(target.value)}
+          value={filter}
+          onChange={({ target }) => setFilter(target.value)}
         >
+          <option value="all">All</option>
           {
-            filterCategory !== undefined ? (
+            filterCategory !== undefined && (
               filterCategory.map((item, index) => (
                 <option
                   key={index}
@@ -28,8 +29,6 @@ function FilterHeader() {
                   {item}
                 </option>
               ))
-            ) : (
-              <p>Loading...</p>
             )
           }
         </select>
