@@ -7,8 +7,6 @@ export default function ListProducts() {
     page,
   } = useContext(ProductsContext);
 
-  // console.log(dataFilter);
-  // console.log(data);
   return (
     <div className="flex-col justify-center items-center mt-6 md:grid md:grid-cols-2 md:gap-2">
       {dataFilter.length > 0 && (

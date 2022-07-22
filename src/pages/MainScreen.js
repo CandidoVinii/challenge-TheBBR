@@ -1,3 +1,4 @@
+/* components */
 import Buttons from "../components/Buttons";
 import FilterHeader from "../components/FilterHeader";
 import ListProducts from "../components/ListProducts";
@@ -35,5 +36,5 @@ export default function MainScreen() {
         </h2>
       </footer>
     </div>
-  )
+  );
 }
