@@ -1,10 +1,10 @@
-import ListProducts from './components/ListProducts';
 import Provider from './context/Provider';
+import MainScreen from './pages/MainScreen';
 
 function App() {
   return (
     <Provider>
-      <ListProducts />
+      <MainScreen />
     </Provider>
   );
 }

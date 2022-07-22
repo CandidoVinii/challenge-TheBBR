@@ -1,6 +1,5 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ProductsContext from '../context/ProductsContext';
-import FilterHeader from './FilterHeader';
 
 export default function ListProducts() {
   const [page, setPage] = useState(4);
@@ -11,6 +10,7 @@ export default function ListProducts() {
     dataFilter,
   } = useContext(ProductsContext);
 
+  /* funcionalidade para mostrar mais itens e se caso chegar no limite de itens ele desabilita o button */
   const showMore = () => {
     if (page === 18) {
       setDisabledMore(true);
@@ -19,6 +19,7 @@ export default function ListProducts() {
     setDisabledLess(false);
   };
 
+  /* funcionalidade para mostrar menos itens e se caso chegar no limite de itens ele desabilita o button */
   const showLess = () => {
     if (page === 4) {
       setDisabledLess(true);
@@ -31,7 +32,6 @@ export default function ListProducts() {
   // console.log(data);
   return (
     <div>
-      <FilterHeader />
       {dataFilter.length > 0 && (
         dataFilter.slice(0, page).map((item) => (
           <div key={item.id}>

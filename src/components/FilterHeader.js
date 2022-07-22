@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import ProductsContext from '../context/ProductsContext';
 
-function FilterHeader() {
+export default function FilterHeader() {
   const {
     filterCategory,
     filter,
@@ -20,21 +20,16 @@ function FilterHeader() {
           onChange={({ target }) => setFilter(target.value)}
         >
           <option value="all">All</option>
-          {
-            filterCategory !== undefined && (
+          {filterCategory !== undefined && (
               filterCategory.map((item, index) => (
                 <option
                   key={index}
                   value={item}>
                   {item}
                 </option>
-              ))
-            )
-          }
+              )))}
         </select>
       </form>
     </div>
   );
 }
-
-export default FilterHeader;
