@@ -35,14 +35,14 @@ export default function Buttons() {
       <button
         onClick={() => showMore()}
         disabled={disabledMore}
-        className="w-28 ml-2 border-2 transition-colors disabled:opacity-75 disabled:hover:border-white hover:border-red-400 text-sm border-orange text-white rounded p-4"
+        className="bg-rose-500 w-28 ml-2 border-2 transition-colors disabled:opacity-75 disabled:hover:border-white hover:border-red-500 text-sm border-orange text-white rounded p-4"
       >
         Show More
       </button>
       <button
         onClick={() => showLess()}
         disabled={disabledLess}
-        className="w-28 ml-2 border-2 transition-colors disabled:opacity-75 disabled:hover:border-white hover:border-red-400 text-sm border-orange text-white rounded p-4"
+        className="bg-rose-500 w-28 ml-2 border-2 transition-colors disabled:opacity-75 disabled:hover:border-white hover:border-red-500 text-sm border-orange text-white rounded p-4"
       >
         Show Less
       </button>
