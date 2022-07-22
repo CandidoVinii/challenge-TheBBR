@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ProductsContext from './ProductsContext';
 import db from '../db/productsCategory.json';
 
-function Provider ({ children }) {
+function Provider({ children }) {
   const [data, setData] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [filterCategory, setFilterCategory] = useState([]);
@@ -26,16 +26,18 @@ function Provider ({ children }) {
     setFilterCategory(filters);
   }, [data]);
 
-  /* seta o meu estado SetDataFilter de acordo com a seleção do usuário pela categoria*/ 
+  /* seta o meu estado SetDataFilter de acordo com a seleção do usuário pela categoria*/
   useEffect(() => {
-    if(filter !== 'all') {
+    if (filter !== 'all') {
       const filterData = data.filter((item) => item.category.name === filter)
       setDataFilter(filterData);
+      setPage(4);
     } else {
       setDataFilter(data);
+      setPage(4);
     };
   }, [filter, data]);
-  
+
   /* seta o valor digitado no input e transforma em tudo minusculo caso tenha alguma letra em caixa alta */
   const handleChange = ({ target }) => {
     setCategoriesFilter(target.value.toLowerCase());
@@ -43,17 +45,20 @@ function Provider ({ children }) {
 
   /* filtra pelo input, caso tenha alguma categoria selecionada filtra dentro da categoria selecionada */
   useEffect(() => {
-    if(categoriesFilter.length > 0) {
+    if (categoriesFilter.length > 0) {
       const result = dataFilter.filter((item) => item.name.toLowerCase().includes(categoriesFilter));
       setDataFilter(result);
-    } else if(filter !== 'all') {
+      setPage(4);
+    } else if (filter !== 'all') {
       const filterData = data.filter((item) => item.category.name === filter)
       setDataFilter(filterData);
+      setPage(4);
     } else {
       setDataFilter(data);
+      setPage(4);
     };
   }, [categoriesFilter]);
-  
+
   const context = {
     data,
     page,
@@ -74,7 +79,7 @@ function Provider ({ children }) {
 
   return (
     <div>
-      <ProductsContext.Provider value={ context }>
+      <ProductsContext.Provider value={context}>
         {children}
       </ProductsContext.Provider>
     </div>

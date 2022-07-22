@@ -1,4 +1,5 @@
 import { useContext } from "react";
+
 import ProductsContext from "../context/ProductsContext";
 
 export default function Buttons() {
@@ -9,7 +10,7 @@ export default function Buttons() {
     disabledMore,
     setDisabledLess,
     setDisabledMore,
-  } = useContext(ProductsContext)
+  } = useContext(ProductsContext);
 
     /* funcionalidade para mostrar mais itens e se caso chegar no limite de itens ele desabilita o button */
     const showMore = () => {
@@ -26,7 +27,7 @@ export default function Buttons() {
         setDisabledLess(true);
       };
       setPage(page - 2);
-      setDisabledMore(false)
+      setDisabledMore(false);
     };
   
   return (
@@ -34,14 +35,14 @@ export default function Buttons() {
       <button
         onClick={() => showMore()}
         disabled={disabledMore}
-        className="w-28 ml-2 border-2 transition-colors hover:border-red-400 text-sm border-orange text-white rounded p-4"
+        className="w-28 ml-2 border-2 transition-colors disabled:opacity-75 disabled:hover:border-white hover:border-red-400 text-sm border-orange text-white rounded p-4"
       >
         Show More
       </button>
       <button
         onClick={() => showLess()}
         disabled={disabledLess}
-        className="w-28 ml-2 border-2 transition-colors hover:border-red-400 text-sm border-orange text-white rounded p-4"
+        className="w-28 ml-2 border-2 transition-colors disabled:opacity-75 disabled:hover:border-white hover:border-red-400 text-sm border-orange text-white rounded p-4"
       >
         Show Less
       </button>
