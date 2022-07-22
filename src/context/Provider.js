@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductsContext from './ProductsContext';
-import db from '../db/data.json';
+import db from '../db/productsCategory.json';
 
 function Provider ({ children }) {
   const [data, setData] = useState([]);
@@ -43,9 +43,11 @@ function Provider ({ children }) {
     if(categoriesFilter.length > 0) {
       const result = dataFilter.filter((item) => item.name.toLowerCase().includes(categoriesFilter));
       setDataFilter(result);
-    } else {
+    } else if(filter !== 'all') {
       const filterData = data.filter((item) => item.category.name === filter)
       setDataFilter(filterData);
+    } else {
+      setDataFilter(data);
     };
   }, [categoriesFilter]);
   
