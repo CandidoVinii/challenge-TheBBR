@@ -9,6 +9,9 @@ function Provider ({ children }) {
   const [filterCategory, setFilterCategory] = useState([]);
   const [filter, setFilter] = useState('all');
   const [categoriesFilter, setCategoriesFilter] = useState('');
+  const [page, setPage] = useState(4);
+  const [disabledMore, setDisabledMore] = useState(false);
+  const [disabledLess, setDisabledLess] = useState(false);
 
   /* monta meu db no estado*/
   useEffect(() => {
@@ -53,10 +56,16 @@ function Provider ({ children }) {
   
   const context = {
     data,
+    page,
+    disabledLess,
+    disabledMore,
     dataFilter,
     filter,
     categoriesFilter,
     filterCategory,
+    setPage,
+    setDisabledLess,
+    setDisabledMore,
     handleChange,
     setDataFilter,
     setFilter,
