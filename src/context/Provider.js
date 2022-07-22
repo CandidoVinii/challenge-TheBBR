@@ -7,7 +7,7 @@ function Provider ({ children }) {
   const [data, setData] = useState([]);
   const [dataFilter, setDataFilter] = useState([]);
   const [filterCategory, setFilterCategory] = useState([]);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState('all');
   const [categoriesFilter, setCategoriesFilter] = useState('');
 
   useEffect(() => {
@@ -26,8 +26,8 @@ function Provider ({ children }) {
       const filterData = data.filter((item) => item.category.name === filter)
       setDataFilter(filterData);
     } else {
-      setDataFilter([]);
-    }
+      setDataFilter(data);
+    };
   }, [filter, data]);
   
   const handleChange = ({ target }) => {
@@ -35,13 +35,14 @@ function Provider ({ children }) {
   };
 
   useEffect(() => {
-    if(categoriesFilter.length === 0) {
-      setDataFilter([]);
-    } else {
-      const result = data.filter((item) => item.name.toLowerCase().includes(categoriesFilter));
+    if(categoriesFilter.length > 0) {
+      const result = dataFilter.filter((item) => item.name.toLowerCase().includes(categoriesFilter));
       setDataFilter(result);
-    }
-  }, [categoriesFilter, data]);
+    } else {
+      const filterData = data.filter((item) => item.category.name === filter)
+      setDataFilter(filterData);
+    };
+  }, [categoriesFilter]);
   
   const context = {
     data,

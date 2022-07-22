@@ -9,43 +9,33 @@ export default function ListProducts() {
 
   const {
     dataFilter,
-    data
   } = useContext(ProductsContext);
 
   const showMore = () => {
     if (page === 18) {
       setDisabledMore(true);
-    }
+    };
     setPage(page + 2);
     setDisabledLess(false);
-  }
+  };
 
   const showLess = () => {
     if (page === 4) {
       setDisabledLess(true);
-    }
+    };
     setPage(page - 2);
     setDisabledMore(false)
-  }
+  };
 
-  console.log(dataFilter);
+  // console.log(dataFilter);
   // console.log(data);
   return (
     <div>
       <FilterHeader />
-      {dataFilter.length > 0 ? (
+      {dataFilter.length > 0 && (
         dataFilter.slice(0, page).map((item) => (
           <div key={item.id}>
             <h2>{item.name}</h2>
-            <img src={item.images[0].src} alt={item.images[0].alt} />
-            <p>{item.shortDescription}</p>
-            <span>{item.category.name}</span>
-          </div>
-        ))
-      ) : (
-        data.slice(0, page).map((item) => (
-          <div key={item.id}>
-            <h1>{item.name}</h1>
             <img src={item.images[0].src} alt={item.images[0].alt} />
             <p>{item.shortDescription}</p>
             <span>{item.category.name}</span>
