@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductsContext from './ProductsContext';
-import db from '../db/data.json';
+import db from '../db/productsCategory.json';
 
 function Provider ({ children }) {
   const [data, setData] = useState([]);
@@ -9,18 +9,24 @@ function Provider ({ children }) {
   const [filterCategory, setFilterCategory] = useState([]);
   const [filter, setFilter] = useState('all');
   const [categoriesFilter, setCategoriesFilter] = useState('');
+  const [page, setPage] = useState(4);
+  const [disabledMore, setDisabledMore] = useState(false);
+  const [disabledLess, setDisabledLess] = useState(false);
 
+  /* monta meu db no estado*/
   useEffect(() => {
     const dataBase = db.data.nodes;
     setData(dataBase);
   }, []);
 
+  /* filtra e seta as categorias, o filtro é para não ter categoria repetida*/
   useEffect(() => {
     const categories = data.map(item => item.category.name);
     const filters = categories.filter((item, i) => categories.indexOf(item) === i);
     setFilterCategory(filters);
   }, [data]);
 
+  /* seta o meu estado SetDataFilter de acordo com a seleção do usuário pela categoria*/ 
   useEffect(() => {
     if(filter !== 'all') {
       const filterData = data.filter((item) => item.category.name === filter)
@@ -30,26 +36,36 @@ function Provider ({ children }) {
     };
   }, [filter, data]);
   
+  /* seta o valor digitado no input e transforma em tudo minusculo caso tenha alguma letra em caixa alta */
   const handleChange = ({ target }) => {
     setCategoriesFilter(target.value.toLowerCase());
   };
 
+  /* filtra pelo input, caso tenha alguma categoria selecionada filtra dentro da categoria selecionada */
   useEffect(() => {
     if(categoriesFilter.length > 0) {
       const result = dataFilter.filter((item) => item.name.toLowerCase().includes(categoriesFilter));
       setDataFilter(result);
-    } else {
+    } else if(filter !== 'all') {
       const filterData = data.filter((item) => item.category.name === filter)
       setDataFilter(filterData);
+    } else {
+      setDataFilter(data);
     };
   }, [categoriesFilter]);
   
   const context = {
     data,
+    page,
+    disabledLess,
+    disabledMore,
     dataFilter,
     filter,
     categoriesFilter,
     filterCategory,
+    setPage,
+    setDisabledLess,
+    setDisabledMore,
     handleChange,
     setDataFilter,
     setFilter,
