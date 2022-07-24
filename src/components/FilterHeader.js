@@ -7,10 +7,11 @@ export default function FilterHeader() {
     filter,
     setFilter,
     handleChange,
+    totalLength,
   } = useContext(ProductsContext);
 
   return (
-    <div>
+    <div className="max-w-2xl mx-auto">
       <form className="flex">
         <input
           placeholder="Digite sua pesquisa aqui..."
@@ -27,16 +28,25 @@ export default function FilterHeader() {
         >
           <option className="text-gray-800" value="all">All</option>
           {filterCategory !== undefined && (
-              filterCategory.map((item, index) => (
-                <option
-                  className="text-gray-800"
-                  key={index}
-                  value={item}>
-                  {item}
-                </option>
-              )))}
+            filterCategory.map((item, index) => (
+              <option
+                className="text-gray-800"
+                key={index}
+                value={item}>
+                {item}
+              </option>
+            )))}
         </select>
       </form>
+      <div className="motion-safe:animate-fadeInborder-2 flex justify-center md:justify-start">
+        {
+          totalLength === 1 ? (
+            <p className="italic mt-2 text-gray-500">{`Existe o total de ${totalLength} produto`}</p>
+          ) : (
+            <p className="italic mt-2 text-gray-500">{`Existem o total de ${totalLength} produtos`}</p>
+          )
+        }
+      </div>
     </div>
   );
 }

@@ -10,8 +10,12 @@ function Provider({ children }) {
   const [filter, setFilter] = useState('all');
   const [categoriesFilter, setCategoriesFilter] = useState('');
   const [page, setPage] = useState(4);
+  const [totalLength, setTotalLength] = useState('');
   const [disabledMore, setDisabledMore] = useState(false);
   const [disabledLess, setDisabledLess] = useState(false);
+
+
+
 
   /* monta meu db no estado*/
   useEffect(() => {
@@ -28,15 +32,39 @@ function Provider({ children }) {
 
   /* seta o meu estado SetDataFilter de acordo com a seleção do usuário pela categoria*/
   useEffect(() => {
-    if (filter !== 'all') {
-      const filterData = data.filter((item) => item.category.name === filter)
-      setDataFilter(filterData);
-      setPage(4);
-    } else {
-      setDataFilter(data);
-      setPage(4);
+    // if (filter !== 'all') {
+    //   const filterData = data.filter((item) => item.category.name === filter)
+    //   setDataFilter(filterData);
+    //   setPage(4);
+    // } else {
+    //   setDataFilter(data);
+    //   setPage(4);
+    //   setTotalLength(dataFilter.length);
+    // };
+    const functionFilter = () => {
+      if (filter !== 'all') {
+        const filterData = data.filter((item) => item.category.name === filter)
+        setDataFilter(filterData);
+        setTotalLength(filterData.length);
+      } else {
+        setDataFilter(data);
+        setTotalLength(data.length);
+      };
     };
-  }, [filter, data]);
+    functionFilter();
+  }, [data, filter]);
+
+  useEffect(() => {
+    if(totalLength <= 4) {
+      setPage(totalLength);
+      setDisabledMore(true);
+      setDisabledLess(true);
+    }else{
+      setDisabledMore(false);
+      setDisabledLess(false);
+      setPage(4); 
+    };
+  }, [totalLength]);
 
   /* seta o valor digitado no input e transforma em tudo minusculo caso tenha alguma letra em caixa alta */
   const handleChange = ({ target }) => {
@@ -47,7 +75,7 @@ function Provider({ children }) {
   useEffect(() => {
     if (categoriesFilter.length > 0) {
       const result = dataFilter.filter((item) => item.name.toLowerCase().includes(categoriesFilter));
-      setDataFilter(result);
+      setDataFilter(result)
       setPage(4);
     } else if (filter !== 'all') {
       const filterData = data.filter((item) => item.category.name === filter)
@@ -68,6 +96,7 @@ function Provider({ children }) {
     filter,
     categoriesFilter,
     filterCategory,
+    totalLength,
     setPage,
     setDisabledLess,
     setDisabledMore,
