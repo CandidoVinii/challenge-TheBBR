@@ -1,5 +1,5 @@
 import { useContext } from "react";
-
+import { FaArrowCircleUp } from 'react-icons/fa';
 import ProductsContext from "../context/ProductsContext";
 
 export default function Buttons() {
@@ -13,53 +13,65 @@ export default function Buttons() {
     totalLength,
   } = useContext(ProductsContext);
 
-    /* funcionalidade para mostrar mais itens e se caso chegar no limite de itens ele desabilita o button */    
-    const showMore = () => {
-      if (page % 2 !== 0){
-        setPage(page + 3);
-      } else {
-        if (page === totalLength - 1) {
-          setPage(page + 1);
-          setDisabledMore(true);
-        } else if (page === totalLength - 2) {
-          setPage(page + 2);
-          setDisabledMore(true);
-        };
+  /* funcionalidade para mostrar mais itens e se caso chegar no limite de itens ele desabilita o button */
+  const showMore = () => {
+    if (page % 2 !== 0) {
+      setPage(page + 3);
+    } else {
+      if (page === totalLength - 1) {
+        setPage(page + 1);
+        setDisabledMore(true);
+      } else if (page === totalLength - 2) {
         setPage(page + 2);
+        setDisabledMore(true);
       };
-     setDisabledLess(false);
+      setPage(page + 2);
     };
-  
-    /* funcionalidade para mostrar menos itens e se caso chegar no limite de itens ele desabilita o button */
-    const showLess = () => {
-      if (page % 2 !== 0) {
-        setPage(page - 3);
-      }else{
-          setPage(page - 2);
-      };
-      if (page === 2) {
-        setPage(page - 2);
-        setDisabledLess(true);
-      };
-      setDisabledMore(false);
+    setDisabledLess(false);
+  };
+
+  /* funcionalidade para mostrar menos itens e se caso chegar no limite de itens ele desabilita o button */
+  const showLess = () => {
+    if (page % 2 !== 0) {
+      setPage(page - 3);
+    } else {
+      setPage(page - 2);
     };
-  
+    if (page === 2) {
+      setPage(page - 2);
+      setDisabledLess(true);
+    };
+    setDisabledMore(false);
+  };
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="flex items-center justify-center">
       <button
         onClick={() => showMore()}
         disabled={disabledMore}
-        className="bg-rose-500 w-28 ml-2 border-2 transition-colors disabled:opacity-75 disabled:hover:border-white hover:border-red-500 text-sm border-orange text-white rounded p-4"
+        className="text-white font-bold py-2 px-4 rounded-lg bg-rose-500 w-28 ml-2 border-2 disabled:opacity-75 hover:p-3 transition-all text-sm border-white disabled:py-2"
       >
         Show More
       </button>
       <button
         onClick={() => showLess()}
         disabled={disabledLess}
-        className="bg-rose-500 w-28 ml-2 border-2 transition-colors disabled:opacity-75 disabled:hover:border-white hover:border-red-500 text-sm border-orange text-white rounded p-4"
+        className="text-white font-bold py-2 px-4 rounded-lg bg-rose-500 w-28 ml-2 border-2 disabled:opacity-75 hover:p-3 transition-all text-sm border-white disabled:py-2"
       >
         Show Less
       </button>
+      <button
+        onClick={scrollTop}
+        disabled={disabledLess}
+        className="text-white flex justify-center items-center font-bold py-2 px-2 rounded-lg bg-rose-500 border-2 disabled:opacity-75 hover:p-3 transition-all disabled:py-2"
+      >
+        <FaArrowCircleUp />
+      </button>
+
     </div>
   );
 }

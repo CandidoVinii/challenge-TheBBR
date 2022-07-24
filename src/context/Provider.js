@@ -9,13 +9,10 @@ function Provider({ children }) {
   const [filterCategory, setFilterCategory] = useState([]);
   const [filter, setFilter] = useState('all');
   const [categoriesFilter, setCategoriesFilter] = useState('');
-  const [page, setPage] = useState(4);
+  const [page, setPage] = useState();
   const [totalLength, setTotalLength] = useState('');
   const [disabledMore, setDisabledMore] = useState(false);
   const [disabledLess, setDisabledLess] = useState(false);
-
-
-
 
   /* monta meu db no estado*/
   useEffect(() => {
@@ -32,18 +29,9 @@ function Provider({ children }) {
 
   /* seta o meu estado SetDataFilter de acordo com a seleção do usuário pela categoria*/
   useEffect(() => {
-    // if (filter !== 'all') {
-    //   const filterData = data.filter((item) => item.category.name === filter)
-    //   setDataFilter(filterData);
-    //   setPage(4);
-    // } else {
-    //   setDataFilter(data);
-    //   setPage(4);
-    //   setTotalLength(dataFilter.length);
-    // };
     const functionFilter = () => {
       if (filter !== 'all') {
-        const filterData = data.filter((item) => item.category.name === filter)
+        const filterData = data.filter((item) => item.category.name === filter);
         setDataFilter(filterData);
         setTotalLength(filterData.length);
       } else {
@@ -54,12 +42,13 @@ function Provider({ children }) {
     functionFilter();
   }, [data, filter]);
 
+  /*Seta o estado do botao de acordo com a quantidade de itens no array dataFilter */
   useEffect(() => {
-    if(totalLength <= 4) {
+    if (totalLength <= 4) {
       setPage(totalLength);
       setDisabledMore(true);
       setDisabledLess(true);
-    }else{
+    } else {
       setDisabledMore(false);
       setDisabledLess(false);
       setPage(4); 
@@ -75,7 +64,7 @@ function Provider({ children }) {
   useEffect(() => {
     if (categoriesFilter.length > 0) {
       const result = dataFilter.filter((item) => item.name.toLowerCase().includes(categoriesFilter));
-      setDataFilter(result)
+      setDataFilter(result);
       setPage(4);
     } else if (filter !== 'all') {
       const filterData = data.filter((item) => item.category.name === filter)
@@ -85,6 +74,7 @@ function Provider({ children }) {
       setDataFilter(data);
       setPage(4);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoriesFilter]);
 
   const context = {
