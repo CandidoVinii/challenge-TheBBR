@@ -18,13 +18,19 @@ Instalação:
 
 ```
 git clone git@github.com:CandidoVinii/challenge-TheBBR.git
+```
+```
 cd challeng-TheBBR
-npm install && npm i
+```
+```
+npm install
 ```
 
 Rodar servidor
 ```
 npm start
+```
+```
 * [visite aqui](http://localhost:3000/)
 ```
 
