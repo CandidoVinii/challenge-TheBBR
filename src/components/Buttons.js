@@ -16,7 +16,7 @@ export default function Buttons() {
   /* funcionalidade para mostrar mais itens e se caso chegar no limite de itens ele desabilita o button */
   const showMore = () => {
     if (page % 2 !== 0) {
-      setPage(page + 3);
+      setPage(page + 1);
     } else {
       if (page === totalLength - 1) {
         setPage(page + 1);
@@ -33,7 +33,7 @@ export default function Buttons() {
   /* funcionalidade para mostrar menos itens e se caso chegar no limite de itens ele desabilita o button */
   const showLess = () => {
     if (page % 2 !== 0) {
-      setPage(page - 3);
+      setPage(page - 1);
     } else {
       setPage(page - 2);
     };
@@ -53,14 +53,14 @@ export default function Buttons() {
       <button
         onClick={() => showMore()}
         disabled={disabledMore}
-        className="text-white font-bold py-2 px-4 rounded-lg bg-rose-500 w-28 ml-2 border-2 disabled:opacity-75 hover:p-3 transition-all text-sm border-white disabled:py-2"
+        className="text-white font-bold py-2 px-3 rounded-lg bg-rose-500 ml-2 border-2 disabled:opacity-75 hover:p-3 transition-all text-sm border-white disabled:py-2"
       >
         Show More
       </button>
       <button
         onClick={() => showLess()}
         disabled={disabledLess}
-        className="text-white font-bold py-2 px-4 rounded-lg bg-rose-500 w-28 ml-2 border-2 disabled:opacity-75 hover:p-3 transition-all text-sm border-white disabled:py-2"
+        className="text-white font-bold py-2 px-3 rounded-lg bg-rose-500 ml-2 border-2 disabled:opacity-75 hover:p-3 transition-all text-sm border-white disabled:py-2"
       >
         Show Less
       </button>

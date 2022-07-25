@@ -39,7 +39,7 @@ export default function MainScreen() {
 			<section className="flex items-center mt-6 justify-center">
 				<Buttons />
 			</section>
-			<footer className="shadow-2xl border-t-2 border-red-500 rounded-t-sm mt-24 flex justify-center">
+			<footer className="shadow-2xl border-t-2 border-red-500 rounded-t-sm sm:mt-12 mt-24 flex justify-center">
 				<h2 className="text-slate-900 font-semibold italic ">
 					Desenvolvido com muito ❤
 				</h2>
