@@ -15,11 +15,11 @@ export default function FilterHeader() {
       <form className="flex">
         <input
           placeholder="Digite sua pesquisa aqui..."
-          className="focus:border-sky-500 focus:ring-1 focus:ring-sky-500 shadow-md border-none rounded w-full py-2 px-3 h-8 bg-slate-300 leading-tight focus:outline-none focus:shadow-outline"
+          className="focus:border-sky-500 focus:ring-1 focus:ring-sky-500 shadow-md border-none rounded w-full py-3 px-4 h-10 bg-slate-300 leading-tight focus:outline-none focus:shadow-outline"
           onChange={handleChange}
           type="text" />
         <select
-          className="focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-center ml-4 shadow appearance-none border-none rounded w-fit py-2 px-3 h-8 text-gray-800 bg-slate-300 leading-tight focus:outline-none focus:shadow-outline"
+          className="focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-center ml-4 shadow appearance-none border-none rounded w-fit py-3 px-4 h-10 text-gray-800 bg-slate-300 leading-tight focus:outline-none focus:shadow-outline"
           name="category"
           label="Select Category"
           id="category"
