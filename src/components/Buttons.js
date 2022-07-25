@@ -71,7 +71,6 @@ export default function Buttons() {
       >
         <FaArrowCircleUp />
       </button>
-
     </div>
   );
 }
