@@ -7,9 +7,9 @@ export default function ListProducts() {
     page,
   } = useContext(ProductsContext);
   return (
-    <div className="motion-safe:animate-fadeIn md:grid md:grid-cols-2 md:gap-2 2xl:grid-cols-4">
+    <div className="motion-safe:animate-fadeIn md:grid w-fit md:grid-cols-2 md:gap-2 lg:grid lg:grid-cols-2 lg:gap-4 2xl:grid-cols-4">
       {dataFilter.slice(0, page).map((item) => (
-        <div key={item.id} className="motion-safe:animate-fadeIn bg-zinc-50 hover:bg-blue-50 transition-all delay-150 hover:shadow-md hover:shadow-rose-500 md:flex flex-col items-center justify-center ring-1 max-w-[280px] w-80 mx-auto mt-4 rounded-xl shadow-xl md:max-w-2xl">
+        <div key={item.id} className=" motion-safe:animate-fadeIn bg-zinc-50 hover:bg-blue-50 transition-all delay-150 hover:shadow-md hover:shadow-rose-500 md:flex flex-col items-center justify-center ring-1 max-w-[280px] w-80 mx-auto mt-4 rounded-xl shadow-xl md:max-w-2xl">
           <div className="mt-4 rounded-tl-xl rounded-b-sm h-10 flex justify-center items-center border-b-2 w-full">
             <h2 className="text-center font-serif text-[13px] text-black font-bold">{item.name}</h2>
           </div>

@@ -38,7 +38,7 @@ export default function FilterHeader() {
             )))}
         </select>
       </form>
-      <div className="motion-safe:animate-fadeInborder-2 flex justify-center md:justify-start">
+      <div className="motion-safe:animate-fadeIn flex justify-center md:justify-start">
         {
           totalLength === 1 ? (
             <p className="italic mt-2 text-gray-500">{`Existe o total de ${totalLength} produto`}</p>
