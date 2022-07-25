@@ -1,4 +1,4 @@
-# Título do projeto
+# The Brooklyn Brothers Challenge
 
 Aplicação desenvolvida usando um arquivo JSON para simular o back-end. Projeto SPA que simula uma página de produtos que podem ser filtrados pelas categorias.
 
